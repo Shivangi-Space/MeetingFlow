@@ -27,7 +27,7 @@ const ResultScreen = ({ route, navigation }) => {
 
     const copyToClipboard = (title, content) => {
         Clipboard.setString(content || '');
-        Alert.alert('Copied', `${title} copied to clipboard`);
+        // Alert.alert('Copied', `${title} copied to clipboard`);
     };
 
     const shareResult = async() => {
