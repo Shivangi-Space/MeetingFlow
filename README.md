@@ -1,97 +1,114 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MeetingFlow
 
-# Getting Started
+MeetingFlow is a React Native mobile app that turns pasted meeting transcripts into structured meeting outputs such as summaries, key discussion points, action items, and follow-up emails. The app uses the Groq API to generate the content and stores previous analyses locally for quick review.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- Paste a meeting transcript and analyze it in seconds
+- Generate a concise meeting summary
+- Extract action items and discussion points
+- Create a professional follow-up email draft
+- Review saved analyses from the History screen
+- Regenerate or share results from the result screen
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Requirements
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Before you start, make sure you have:
 
-```sh
-# Using npm
+- Node.js 22.11.0 or newer
+- npm
+- Android Studio and Android SDK for Android builds, or Xcode and CocoaPods for iOS builds
+- A Groq API key
+
+## Installation
+
+1. Clone the repository
+   ```bash
+   git clone <repository-url>
+   cd MeetingFlow
+   ```
+
+2. Install JavaScript dependencies
+   ```bash
+   npm install
+   ```
+
+3. Create an environment file
+   Create a file named `.env` in the project root with your Groq key:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
+
+4. Generate the app config
+   ```bash
+   npm run generate-env
+   ```
+   This creates the generated config file used by the app from your `.env` values.
+
+5. For iOS only, install CocoaPods dependencies
+   ```bash
+   bundle install
+   cd ios
+   pod install
+   cd ..
+   ```
+
+## Running the app
+
+### Start Metro
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
 ### Android
 
-```sh
-# Using npm
-npm run android
+Open a second terminal and run:
 
-# OR using Yarn
-yarn android
+```bash
+npm run android
 ```
 
 ### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+Open a second terminal and run:
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+```bash
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## How to use the app
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+1. Launch the app on an emulator, simulator, or physical device.
+2. On the Home screen, paste the meeting transcript into the text box.
+3. Tap "Analyze Meeting".
+4. Wait for the AI-generated result to appear on the Result screen.
+5. Review the summary, discussion points, action items, and follow-up email.
+6. Use the buttons to copy, share, or regenerate the content.
+7. Open History to browse previously analyzed meetings.
 
-## Step 3: Modify your app
+## Project structure
 
-Now that you have successfully run the app, let's make changes!
+- [src/screens](src/screens) — Home, Result, and History screens
+- [src/store](src/store) — Zustand store for transcript and analysis state
+- [src/api](src/api) — Groq API integration
+- [src/utils](src/utils) — storage and meeting analysis helpers
+- [scripts](scripts) — environment config generation script
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Troubleshooting
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+- If you see a message about a missing Groq API key, make sure your `.env` file exists and run `npm run generate-env` again.
+- If Metro has stale cache issues, restart it with:
+  ```bash
+  npx react-native start --reset-cache
+  ```
+- If Android fails to build, confirm that your emulator or device is running and that the Android SDK is configured correctly.
+- If iOS fails to build, run `pod install` again inside the `ios` folder.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## Testing
 
-## Congratulations! :tada:
+Run the test suite with:
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```bash
+npm test
+```
