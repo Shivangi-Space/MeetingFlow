@@ -3,17 +3,34 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "generate-env": "node scripts/generate-env-config.js",
+    "preandroid": "npm run generate-env",
     "android": "react-native run-android",
+    "preios": "npm run generate-env",
     "ios": "react-native run-ios",
+    "prestart": "npm run generate-env",
     "lint": "eslint .",
     "start": "react-native start",
+    "pretest": "npm run generate-env",
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-clipboard/clipboard": "^1.16.3",
+    "@react-native/new-app-screen": "0.86.0",
+    "@react-navigation/native": "^7.3.4",
+    "@react-navigation/stack": "^7.10.6",
+    "lucide-react-native": "^1.22.0",
     "react": "19.2.3",
     "react-native": "0.86.0",
-    "@react-native/new-app-screen": "0.86.0",
-    "react-native-safe-area-context": "^5.5.2"
+    "react-native-gesture-handler": "^3.0.2",
+    "react-native-markdown-display": "^7.0.2",
+    "react-native-mmkv": "^4.3.2",
+    "react-native-nitro-modules": "^0.35.10",
+    "react-native-safe-area-context": "^5.8.0",
+    "react-native-screens": "^4.25.2",
+    "react-native-share": "^12.3.1",
+    "react-native-svg": "^15.15.5",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

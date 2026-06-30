@@ -1,45 +1,38 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { HomeScreen } from './src/screens/HomeScreen';
+import ResultScreen from './src/screens/ResultScreen';
+import HistoryScreen from './src/screens/HistoryScreen';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+const Stack = createStackNavigator();
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+const App = () => {
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#ffffff',
+          },
+          headerTintColor: '#111827',
+          headerTitleStyle: {
+            fontWeight: '700',
+          },
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} options={{
+          title: 'MeetingFlow',
+        }} />
+        <Stack.Screen name="Result" component={ResultScreen} options={{
+          title: 'Meeting Insights',
+        }} />
+        <Stack.Screen name="History" component={HistoryScreen} options={{
+          title: 'Meeting History',
+        }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+};
 
 export default App;
